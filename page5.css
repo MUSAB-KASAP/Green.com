@@ -1,0 +1,95 @@
+/* حاوية الفلترة */
+.filter-container
+{
+    display: flex;
+    gap: 50px; /* يمكنك تعديل مقدار الفراغ هنا حسب الرغبة */
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    background: linear-gradient(135deg, #d4af37, #c0c0c0); /* تدرج لوني ذهبي وفضي */
+    padding: 20px;
+    border-radius: 12px; /* زوايا مستديرة */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* ظل للصندوق */
+    margin-bottom: 30px; /* مسافة أسفل الحاوية */
+}
+
+/* الشعار */
+.logo
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+/* أول عنصر h1 داخل الشعار */
+.logo h1:first-child
+{
+    background-color: #d4af37; /* لون ذهبي للخلفية */
+    margin: 0;
+    font-size: 50px;
+}
+
+/* زر الحساب */
+.account-button {
+    display: flex;
+    background-color: #d4af37; /* لون ذهبي */
+    color: white; /* لون نص الزر أبيض */
+    border: none;
+    padding: 10px 40px;
+    font-size: 18px;
+    border-radius: 5px; /* حواف مستديرة للزر */
+    cursor: pointer; /* مؤشر الفأرة يتحول لليد عند المرور فوق الزر */
+    transition: background-color 0.3s ease; /* تأثير انتقالي عند تغيير اللون */
+    margin-left: 100px; /* مسافة بين العنوان والزر */
+    right: 100%;
+    text-align: center;
+    transform:translateX(-750%);
+}
+
+/* آخر عنصر h1 داخل الشعار */
+.logo h1:last-child
+{
+    margin: 0;
+    font-size: 50px;
+    position: absolute;
+    left: 70%; /* تحريكه نحو اليسار */
+    transform: translateX(-5%); /* تعديل موقعه بدقة */
+    color: #d4af37; /* لونه ذهبي */
+}
+
+/* حقل البحث */
+.search-input 
+{
+    padding: 0.5%;
+    width: 20%;
+    font-size: large;
+    background-color: white; /* خلفية بيضاء */
+}
+
+/* حقل إدخال المدينة */
+#city-input
+{
+    padding: 0.5%;
+    width: 20%;
+    font-size: large;
+    background-color: white; /* خلفية بيضاء */
+}
+
+/* اختيار اللغة */
+#choose-language
+{
+    padding: 0.5%;
+    width: 20%;
+    font-size: large;
+    background-color: white; /* خلفية بيضاء */
+}
+
+/* حقل الترتيب */
+#sort-input
+{
+    padding: 0.5%;
+    width: 20%;
+    font-size: large;
+    background-color: white; /* خلفية بيضاء */
+}

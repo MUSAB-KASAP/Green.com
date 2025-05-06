@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tercüman İlanı Ekle</title>
+    <link rel="stylesheet" href="page6.css">
+</head>
+<body>
+    <div class="ilan-ekle-container">
+        <h1>TEA.com
+        </h1>
+        <h1>Tercüman İlanı Ekle</h1>
+
+        <form id="ilan-ekle-form">
+            <div class="form-group">
+                <label for="isim">Tercüman İsmi:</label>
+                <input type="text" id="isim" name="isim" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dil">Dil Seçimi:</label>
+                <select id="dil" name="dil" required>
+                    <option value="">Dil Seçin</option>
+                    <option value="arapca-turkce">Arapça - Türkçe</option>
+                    <option value="ingilizce-turkce">İngilizce - Türkçe</option>
+                    <option value="almanca-turkce">Almanca - Türkçe</option>
+                    <option value="fransizca-turkce">Fransızca - Türkçe</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="fiyat">Saatlik Ücret (TL):</label>
+                <input type="number" id="fiyat" name="fiyat" min="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="sehir">Şehir Seçimi:</label>
+                <select id="sehir" name="sehir" required>
+                    <option value="">Şehir Seçin</option>
+                    <option value="istanbul">İstanbul</option>
+                    <option value="ankara">Ankara</option>
+                    <option value="izmir">İzmir</option>
+                    <option value="bursa">Bursa</option>
+                    <!-- Diğer şehirler eklenebilir -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="aciklama">Açıklama:</label>
+                <textarea id="aciklama" name="aciklama" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="profil-foto">Profil Fotoğrafı:</label>
+                <input type="file" id="profil-foto" name="profil-foto">
+            </div>
+
+            <button type="submit">İlanı Yayınla</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
