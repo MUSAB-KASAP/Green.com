@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green-Bey</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <style>
+        /* Navbar genel arka plan rengi */
+        #navRenk {
+            background-color: cadetblue;
+        }
+
+        /* Navbar başlığının arka plan rengi ve font stili */
+        .navbar-brand {
+            background-color: yellowgreen;
+            font-style: oblique;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Navbar link renkleri */
+        .nav-item .nav-link {
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Link hover ve aktif efekti */
+        .nav-item .nav-link:hover, 
+        .nav-item .nav-link.active {
+            background-color: yellowgreen;
+            color: black;
+            border-radius: 5px;
+        }
+
+        /* Navbar içeriği */
+        #navbarSupportedContent {
+            background-color: rgb(160, 175, 209);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Giriş Yap butonunun stili - Dikkat çekici */
+        .btn-giris {
+            background-color: #007bff; /* Mavi */
+            color: white;
+            font-weight: bold;
+            border: 2px solid #0056b3; /* Koyu mavi kenarlık */
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        /* Giriş Yap butonuna hover efekti */
+        .btn-giris:hover {
+            background-color: #0056b3; /* Daha koyu mavi */
+            border-color: #004085; /* Daha koyu kenarlık */
+        }
+
+        /* Container içindeki grid düzeni */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 4fr; /* Sol küçük, orta büyük alan */
+            grid-template-rows: auto; /* Yüksekliği içeriğe göre belirle */
+            height: 100vh; /* Sayfanın tamamını kapsar */
+            margin-top: 20px;
+            gap: 20px; /* Sütunlar arasındaki boşluk */
+        }
+
+        .left {
+            background-color: lightgray;
+            padding: 20px;
+            height: 100%; /* Yüksekliği sabitle */
+        }
+
+        .center {
+            background-color: rgb(109, 131, 199);
+            padding: 20px;
+            height: 100%; /* Yüksekliği sabitle */
+            overflow-y: auto; /* İçeriğin fazlası scroll ile görünür */
+        }
+
+        /* Alt kategoriler için stil */
+        .categories {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .categories h4 {
+            font-weight: bold;
+            color: cadetblue;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .category-item {
+            padding: 12px;
+            background-color: rgb(9, 184, 233);
+            margin: 5px 0;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .category-item:hover {
+            background-color: #ffeb3b;
+        }
+
+        .sub-categories {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .sub-category-item {
+            padding: 8px;
+            background-color: lightcoral;
+            margin: 5px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        /* Ana başlık ve alt başlık için stil */
+        .category-item-main {
+            background-color: #008080;
+            color: white;
+            font-size: 1.1em;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 5px 0;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .category-item-main:hover {
+            background-color: #004d4d;
+        }
+
+        .category-item-main.active {
+            background-color: #004d4d;
+        }
+
+        /* Dil seçme butonu için stil */
+        .btn-dil-sec {
+            background-color: #28a745; /* Yeşil */
+            color: white;
+            font-weight: bold;
+            border: 2px solid #218838; /* Koyu yeşil kenarlık */
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px; /* Arama kutusundan biraz uzaklaştır */
+        }
+
+        .btn-dil-sec:hover {
+            background-color: #218838; /* Daha koyu yeşil */
+            border-color: #1e7e34; /* Daha koyu kenarlık */
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navRenk" class="navbar navbar-expand-lg">
+        <!-- Navbar başlığı -->
+        <span class="navbar-brand">Green-Bey.com</span> 
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- Ana Sayfa bağlantısı -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Ana Sayfa</a>
+                </li>
+                <!-- Ücretsiz İlan Ver -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ücretsiz İlan Ver</a>
+                </li>
+            </ul>
+            <!-- Arama Formu -->
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Ara">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                <button class="btn btn-dil-sec" type="button" onclick="dilSec()">Dil Seç</button>
+
+            </form>
+            <!-- Giriş Yap ve Hesap Aç Butonları -->
+            <div class="ml-3">
+                <a href="#" class="btn btn-giris">Giriş Yap</a>
+                <a href="#" class="btn btn-success ml-2">Hesap Aç</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Grid Düzeni -->
+    <div id="GridDiv" class="container-fluid main-content">
+        <!-- Sol Küçük Sütun -->
+        <div class="left">
+            <!-- Kategoriler -->
+            <div class="categories">
+                <h4>Kategoriler</h4>
+                <!-- Ana kategoriler -->
+                <div class="category-item-main" onclick="toggleSubCategories('emlak')">Emlak</div>
+                <div id="emlak" class="sub-categories">
+                    <div class="category-item">عقارات(0)</div>
+                    <div class="category-item">İş Yeri (0)</div>
+                    <div class="category-item">Arsa (0)</div>
+                    <div class="category-item">Konut Projeleri (0)</div>
+                    <div class="category-item">Bina (0)</div>
+                    <div class="category-item">Devre Mülk (0)</div>
+                    <div class="category-item">Turistik Tesis (0)</div>
+                </div>
+                
+                <div class="category-item-main" onclick="toggleSubCategories('vasita')">Vasıta</div>
+                <div id="vasita" class="sub-categories">
+                    <div class="category-item">Otomobil</div>
+                    <div class="category-item">Arazi, SUV & Pickup</div>
+                    <div class="category-item">Motosiklet</div>
+                    <div class="category-item">Minivan & Panelvan</div>
+                    <div class="category-item">Ticari Araçlar</div>
+                    <div class="category-item">Elektrikli Araçlar</div>
+                    <div class="category-item">Kiralık Araçlar</div>
+                    <div class="category-item">Deniz Araçları</div>
+                    <div class="category-item">Hasarlı Araçlar</div>
+                    <div class="category-item">Karavan</div>
+                    <div class="category-item">Klasik Araçlar</div>
+                    <div class="category-item">Hava Araçları</div>
+                    <div class="category-item">ATV</div>
+                    <div class="category-item">UTV</div>
+                    <div class="category-item">Engelli Plakalı Araçlar</div>
+                </div>
+                
+                <div class="category-item-main" onclick="toggleSubCategories('yedek-parca')">Yedek Parça</div>
+                <div id="yedek-parca" class="sub-categories">
+                    <div class="category-item">Yedek Parça, Aksesuar, Donanım & Tuning (0)</div>
+                    <div class="category-item">Otomotiv Ekipmanları (0)</div>
+                    <div class="category-item">Motosiklet Ekipmanları (0)</div>
+                    <div class="category-item">Deniz Aracı Ekipmanları (0)</div>
+                </div>
+                
+                <div class="category-item-main" onclick="toggleSubCategories('ikinci-el')">İkinci El ve Sıfır Alışveriş</div>
+                <div id="ikinci-el" class="sub-categories">
+                    <div class="category-item">Bilgisayar (0)</div>
+                    <div class="category-item">Cep Telefonu & Aksesuar (0)</div>
+                    <div class="category-item">Fotoğraf & Kamera (0)</div>
+                    <div class="category-item">Ev Dekorasyon (0)</div>
+                    <div class="category-item">Ev Elektroniği (0)</div>
+                    <div class="category-item">Elektrikli Ev Aletleri (0)</div>
+                    <div class="category-item">Giyim & Aksesuar (0)</div>
+                    <div class="category-item">Saat (0)</div>
+                    <div class="category-item">Anne & Bebek (0)</div>
+                    <div class="category-item">Kişisel Bakım & Kozmetik (0)</div>
+                    <div class="category-item">Hobi & Oyuncak (0)</div>
+                    <div class="category-item">Oyun & Konsol (0)</div>
+                    <div class="category-item">Kitap, Dergi & Film (0)</div>
+                    <div class="category-item">Müzik (0)</div>
+                    <div class="category-item">Spor (0)</div>
+                    <div class="category-item">Takı, Mücevher & Altın (0)</div>
+                    <div class="category-item">Koleksiyon (0)</div>
+                    <div class="category-item">Antika (0)</div>
+                    <div class="category-item">Bahçe & Yapı Market (0)</div>
+                    <div class="category-item">Teknik Elektronik (0)</div>
+                    <div class="category-item">Ofis & Kırtasiye (0)</div>
+                    <div class="category-item">Yiyecek & İçecek (0)</div>
+                    <div class="category-item">Diğer Her Şey (0)</div>
+                </div>
+                
+                <div class="category-item-main" onclick="toggleSubCategories('is-makineleri')">İş Makineleri & Sanayi</div>
+                <div id="is-makineleri" class="sub-categories">
+                    <div class="category-item">İş Makineleri (0)</div>
+                    <div class="category-item">Tarım Makineleri (0)</div>
+                    <div class="category-item">Sanayi (0)</div>
+                    <div class="category-item">Elektrik & Enerji (0)</div>
+                </div>
+                
+                <div class="category-item-main" onclick="toggleSubCategories('ustalar-hizmetler')">Ustalar ve Hizmetler</div>
+                <div id="ustalar-hizmetler" class="sub-categories">
+                    <div class="category-item">Ev Tadilat & Dekorasyon (0)</div>
+                    <div class="category-item">Nakliye (0)</div>
+                    <div class="category-item">Araç Servis & Bakım (0)</div>
+                    <div class="category-item">Tamirat & Teknik Servis (0)</div>
+                    <div class="category-item">Düğün & Etkinlik (0)</div>
+                    <div class="category-item">Diğer (0)</div>
+                </div>
+                
+                <div class="category-item-main" onclick="toggleSubCategories('ozel-ders')">Özel Ders Verenler</div>
+                <div id="ozel-ders" class="sub-categories">
+                    <div class="category-item">Lise & Üniversite (0)</div>
+                    <div class="category-item">İlkokul & Ortaokul (0)</div>
+                    <div class="category-item">Yabancı Dil (0)</div>
+                    <div class="category-item">Bilgisayar (0)</div>
+                    <div class="category-item">Direksiyon (0)</div>
+                    <div class="category-item">Spor (0)</div>
+                    <div class="category-item">Sanat (0)</div>
+                    <div class="category-item">Dans (0)</div>
+                    <div class="category-item">Müzik & Enstrüman (0)</div>
+                    <div class="category-item">Tiyatro & Oyunculuk (0)</div>
+                    <div class="category-item">Kişisel Gelişim (0)</div>
+                    <div class="category-item">Mesleki Dersler (0)</div>
+                    <div class="category-item">Özel Eğitim (0)</div>
+                    <div class="category-item">Çocuk Gelişimi (0)</div>
+                    <div class="category-item">Güzel Konuşma & Diksiyon (0)</div>
+                    <div class="category-item">Fotoğrafçılık (0)</div>
+                </div>
+                
+                <div class="category-item-main" onclick="toggleSubCategories('is-ilanlari')">İş İlanları</div>
+                <div id="is-ilanlari" class="sub-categories">
+                    <div class="category-item">Avukatlık & Hukuki Danışmanlık (0)</div>
+                    <div class="category-item">Eğitim (0)</div>
+                    <div class="category-item">Eğlence & Aktivite (0)</div>
+                    <div class="category-item">Güzellik & Bakım (0)</div>
+                    <div class="category-item">IT & Yazılım Geliştirme (0)</div>
+                    <div class="category-item">İnsan Kaynakları (0)</div>
+                    <div class="category-item">İnşaat & Yapı (0)</div>
+                    <div class="category-item">İşletme & Stratejik Yönetim (0)</div>
+                    <div class="category-item">Koruma & Güvenlik (0)</div>
+                    <div class="category-item">Lojistik & Taşıma (0)</div>
+                    <div class="category-item">Mağazacılık ve Perakendecilik (0)</div>
+                    <div class="category-item">Muhasebe, Finans & Bankacılık (0)</div>
+                    <div class="category-item">Mühendislik (0)</div>
+                    <div class="category-item">Müşteri Hizmetleri (0)</div>
+                    <div class="category-item">Ofis Yönetimi & İdari İşler (0)</div>
+                    <div class="category-item">Part Time & Ek İş Fırsatları (0)</div>
+                    <div class="category-item">Pazarlama & Ürün Yönetimi (0)</div>
+                    <div class="category-item">Radyo, Sinema & Televizyon (0)</div>
+                    <div class="category-item">Restoran & Konaklama (0)</div>
+                    <div class="category-item">Sağlık (0)</div>
+                    <div class="category-item">Satış (0)</div>
+                    <div class="category-item">Tamir & Bakım (0)</div>
+                    <div class="category-item">Tarım & Hayvancılık (0)</div>
+                    <div class="category-item">Tasarım & Yaratıcılık (0)</div>
+                    <div class="category-item">Tekstil & Konfeksiyon (0)</div>
+                    <div class="category-item">Üretim & İmalat (0)</div>
+                </div>
+                
+                <div class="category-item-main" onclick="toggleSubCategories('yardimci-arayanlar')">Yardımcı Arayanlar</div>
+                <div id="yardimci-arayanlar" class="sub-categories">
+                    <div class="category-item">Bebek & Çocuk Bakıcısı (0)</div>
+                    <div class="category-item">Yaşlı & Hasta Bakıcısı (0)</div>
+                    <div class="category-item">Temizlikçi & Ev İşlerine Yardımcı (0)</div>
+                </div>
+                
+
+
+
+
+
+
+            </div>
+        </div>
+
+        <!-- Orta Büyük Sütun -->
+        <div class="center">
+        </div>
+    </div>
+
+    <!-- Bootstrap, jQuery ve Popper.js dosyaları (DOĞRU SIRALAMA) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        // Kategorileri tıklanınca alt kategorilerin görünmesini sağla
+        function toggleSubCategories(category) {
+            const subCategories = document.getElementById(category);
+            subCategories.style.display = subCategories.style.display === 'block' ? 'none' : 'block';
+        }
+        // Dil seçme butonu için fonksiyon
+        function dilSec() {
+            const dil = prompt("Lütfen bir dil seçin:\n1. Türkçe\n2. İngilizce\n3. Arapça");
+            switch (dil) {
+                case "1":
+                    alert("Türkçe seçildi.");
+                    break;
+                case "2":
+                    alert("İngilizce seçildi.");
+                    break;
+                case "3":
+                    alert("Arapça seçildi.");
+                    break;
+                default:
+                    alert("Geçersiz seçim!");
+            }
+        }
+    </script>
+
+</body>
+</html>
